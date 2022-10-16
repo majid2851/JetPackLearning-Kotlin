@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -89,19 +90,6 @@ fun TopHeader(totalPerPerson:Double=0.0){
 @Composable
 fun MainContent()
 {
-
-    BillForm(){
-
-    }
-
-}
-
-
-@ExperimentalComposeUiApi
-@Composable
-fun BillForm(modifier: Modifier= Modifier,
-            onValChange:(String) ->Unit={}, )
-{
     val totalState= remember {
         mutableStateOf("")
     }
@@ -112,8 +100,27 @@ fun BillForm(modifier: Modifier= Modifier,
         mutableStateOf(0f)
     }
     val counter= remember {
-        mutableStateOf(0)
+        mutableStateOf(1)
     }
+
+    BillForm(totalState=totalState,validState=validState,
+        sliderPositionState=sliderPositionState,counter=counter){
+
+    }
+
+}
+
+
+@ExperimentalComposeUiApi
+@Composable
+fun BillForm(modifier: Modifier= Modifier,
+            totalState:MutableState<String>,
+            validState:Boolean,
+             sliderPositionState:MutableState<Float>,
+             counter:MutableState<Int>,
+            onValChange:(String) ->Unit={}, )
+{
+
     val keyboardController= LocalSoftwareKeyboardController.current
 
     Column(verticalArrangement = Arrangement.Center,
