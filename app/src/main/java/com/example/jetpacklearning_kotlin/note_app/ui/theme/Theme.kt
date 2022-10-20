@@ -1,4 +1,4 @@
-package com.example.jetpacklearning_kotlin.ui.theme
+package com.example.jetpacklearning_kotlin.note_app.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

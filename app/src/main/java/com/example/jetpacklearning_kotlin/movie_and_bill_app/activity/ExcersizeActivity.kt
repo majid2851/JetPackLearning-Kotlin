@@ -1,4 +1,4 @@
-package com.example.jetpacklearning_kotlin
+package com.example.jetpacklearning_kotlin.movie_and_bill_app.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.jetpacklearning_kotlin.ui.theme.JetPackLearningKotlinTheme
+import com.example.jetpacklearning_kotlin.movie_and_bill_app.ui.theme.JetPackLearningKotlinTheme
 
 class ExcersizeActivity : ComponentActivity()
 {

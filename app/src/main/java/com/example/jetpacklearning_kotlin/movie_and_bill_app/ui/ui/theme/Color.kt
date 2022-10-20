@@ -1,4 +1,4 @@
-package com.example.jetpacklearning_kotlin.ui.theme
+package com.example.jetpacklearning_kotlin.movie_and_bill_app.ui.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

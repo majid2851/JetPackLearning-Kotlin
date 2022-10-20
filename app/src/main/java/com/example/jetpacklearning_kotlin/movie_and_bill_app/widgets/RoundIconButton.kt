@@ -1,6 +1,5 @@
-package com.example.jetpacklearning_kotlin.widgets
+package com.example.jetpacklearning_kotlin.movie_and_bill_app.widgets
 
-import android.widget.ImageView
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -14,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import java.nio.file.Files.size
 
 val IconButtonSizeModifier= Modifier.size(40.dp)
 @Composable

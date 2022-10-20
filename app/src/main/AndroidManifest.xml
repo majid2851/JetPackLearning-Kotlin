@@ -2,15 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jetpacklearning_kotlin">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.JetPackLearningKotlin">
+        android:theme="@style/Theme.JetPackLearningKotlin"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name=".movie_and_bill_app.activity.MovieActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.JetPackLearningKotlin" />
+        <activity
+            android:name=".movie_and_bill_app.activity.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_movie"
+            android:theme="@style/Theme.JetPackLearningKotlin" />
+        <activity
+            android:name=".note_app.NoteActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.JetPackLearningKotlin">
@@ -20,8 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExcersizeActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".movie_and_bill_app.activity.ExcersizeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

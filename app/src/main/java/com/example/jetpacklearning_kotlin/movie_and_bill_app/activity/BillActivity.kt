@@ -1,7 +1,6 @@
-package com.example.jetpacklearning_kotlin
+package com.example.jetpacklearning_kotlin.movie_and_bill_app.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -26,17 +25,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.jetpacklearning_kotlin.components.InputField
-import com.example.jetpacklearning_kotlin.ui.ui.theme.JetPackLearningKotlinTheme
-import com.example.jetpacklearning_kotlin.widgets.RoundImageVector
+import com.example.jetpacklearning_kotlin.movie_and_bill_app.components.InputField
+import com.example.jetpacklearning_kotlin.movie_and_bill_app.ui.ui.theme.JetPackLearningKotlinTheme
+import com.example.jetpacklearning_kotlin.movie_and_bill_app.widgets.RoundImageVector
 
 @OptIn(ExperimentalComposeUiApi::class)
 class MainActivity : ComponentActivity() {
