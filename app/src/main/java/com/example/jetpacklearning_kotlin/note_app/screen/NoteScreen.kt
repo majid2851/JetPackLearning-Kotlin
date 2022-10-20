@@ -9,7 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Notifications
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +23,12 @@ import com.example.jetpacklearning_kotlin.note_app.components.NoteInputText
 @Composable
 fun NoteScreen()
 {
+    var title by remember {
+        mutableStateOf("")
+    }
+
+
+
     Column(modifier=Modifier.padding(6.dp))
     {
         TopAppBar(
@@ -40,7 +46,7 @@ fun NoteScreen()
                 horizontalAlignment = Alignment.CenterHorizontally)
         {
             NoteInputText(text = "majid", label = "my edi", onTextChange ={
-                
+
             } )
 
 
