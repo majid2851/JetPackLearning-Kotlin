@@ -59,5 +59,6 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.2.2")
 
+    debugImplementation "androidx.compose.ui:ui-tooling:1.2.0-rc01"
 
 }

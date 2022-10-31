@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalComposeUiApi::class)
+
 package com.example.jetpacklearning_kotlin.note_app.components
 
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -11,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun NoteInputText(modifier: Modifier =Modifier, text:String, label:String,
                   maxLine:Int=1, onTextChange:(String)->Unit, onItemAction:()->Unit={},)
@@ -30,8 +34,26 @@ fun NoteInputText(modifier: Modifier =Modifier, text:String, label:String,
             }), modifier = modifier
         )
 
+}
+
+@Composable
+fun NoteButton(modifier: Modifier=Modifier,
+                text: String,onClick:()->Unit,enabled:Boolean=true,)
+{
+    Button(onClick = onClick, shape = CircleShape, enabled = enabled,
+            modifier = modifier)
+    {
+        Text(text)
+    }
 
 }
+
+
+
+
+
+
+
 
 
 
