@@ -2,6 +2,7 @@ package com.example.jetpacklearning_kotlin.note_app.screen
 
 import android.os.Build
 import android.provider.ContactsContract
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,6 +43,7 @@ fun NoteScreen(notes:List<NoteModel>,onAddNote:(NoteModel)->Unit,
     var description by remember {
         mutableStateOf("")
     }
+    val context= LocalContext.current
 
     Column(modifier=Modifier.padding(6.dp))
     {
@@ -79,8 +82,11 @@ fun NoteScreen(notes:List<NoteModel>,onAddNote:(NoteModel)->Unit,
             NoteButton(text = "Submit", onClick = {
                 if(title.isNotEmpty() && description.isNotEmpty())
                 {
+                    onAddNote(NoteModel(title = title, description = description))
                     title=""
                     description=""
+                    Toast.makeText(context,"Note added",Toast.LENGTH_SHORT)
+                        .show()
                 }
             })
         }
@@ -90,7 +96,7 @@ fun NoteScreen(notes:List<NoteModel>,onAddNote:(NoteModel)->Unit,
             items(notes)
             {
                 NoteRow(modifier = Modifier, note = it, onNoteClicked = {
-
+                    onRemoveNote(it)
                 })
             }
 
@@ -116,7 +122,7 @@ fun NoteRow(modifier: Modifier,note:NoteModel,
     {
         Column(
             modifier
-                .clickable { }
+                .clickable { onNoteClicked(note)}
                 .padding(horizontal = 14.dp, vertical = 6.dp),
             horizontalAlignment = Alignment.Start)
         {
