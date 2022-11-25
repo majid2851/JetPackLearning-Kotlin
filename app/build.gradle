@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 
 }
 
@@ -58,6 +60,10 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:2.5.2"
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
 
     implementation("io.coil-kt:coil-compose:2.2.2")
 

@@ -31,11 +31,13 @@ import com.example.jetpacklearning_kotlin.note_app.model.NoteModel
 import com.example.jetpacklearning_kotlin.note_app.screen.NoteScreen
 import com.example.jetpacklearning_kotlin.note_app.screen.NoteViewModel
 import com.example.jetpacklearning_kotlin.note_app.ui.theme.JetPackLearningKotlinTheme
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.NotSerializableException
 import java.time.format.DateTimeFormatter
 import kotlin.contracts.ExperimentalContracts
 
 @ExperimentalComposeUiApi
+@AndroidEntryPoint
 class NoteActivity : ComponentActivity()
 {
     @RequiresApi(Build.VERSION_CODES.O)
