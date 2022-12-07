@@ -15,6 +15,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -64,7 +65,9 @@ class NoteActivity : ComponentActivity()
 @Composable
 fun NotesApp(noteViewModel: NoteViewModel= viewModel())
 {
-    NoteScreen( noteViewModel.noteList,
+    val notesList=noteViewModel.noteList.collectAsState().value
+
+    NoteScreen( notesList,
         onAddNote = {
             noteViewModel.addNote(it)
         },
