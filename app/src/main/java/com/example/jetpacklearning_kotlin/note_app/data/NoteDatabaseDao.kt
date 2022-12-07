@@ -1,26 +1,28 @@
 package com.example.jetpacklearning_kotlin.note_app.data
 
+import androidx.compose.runtime.MutableState
 import androidx.room.*
 import com.example.jetpacklearning_kotlin.note_app.model.NoteModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDatabaseDao
 {
     @Query("Select * from notes_tbl")
-    fun getNotes():List<NoteModel>
+    fun getNotes():Flow<List<NoteModel>>
 
     @Query("Select * from notes_tbl where id=:id")
-    fun getNoteById(id:String):NoteModel
+    suspend fun getNoteById(id:String):NoteModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNote(note:NoteModel)
+    suspend fun insertNote(note:NoteModel)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateNote(note: NoteModel)
+    suspend fun updateNote(note: NoteModel)
 
     @Query("Delete from notes_tbl")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Delete
-    fun deleteNote(id:String)
+    suspend fun deleteNote(note: NoteModel)
 }

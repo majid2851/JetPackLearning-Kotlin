@@ -14,10 +14,13 @@ import java.util.*
 data class NoteModel @RequiresApi(Build.VERSION_CODES.O) constructor(
     @PrimaryKey
     val id: UUID =UUID.randomUUID(),
+
     @ColumnInfo(name = "notes_title")
     val title:String,
+
     @ColumnInfo(name = "notes_description")
     val description:String,
+
     @ColumnInfo(name = "notes_entryDate")
     val entryDate:Date=Date.from(Instant.now())
 )

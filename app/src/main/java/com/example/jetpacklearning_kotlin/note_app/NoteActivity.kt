@@ -51,7 +51,8 @@ class NoteActivity : ComponentActivity()
                 Surface(modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background)
                 {
-                     NotesApp(NoteViewModel())
+                    val viewModel=viewModel<NoteViewModel>()
+                    NotesApp(viewModel)
 
                 }
             }
