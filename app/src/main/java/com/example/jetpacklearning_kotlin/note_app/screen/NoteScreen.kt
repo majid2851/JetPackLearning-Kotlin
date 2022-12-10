@@ -30,6 +30,7 @@ import com.example.jetpacklearning_kotlin.note_app.components.NoteButton
 import com.example.jetpacklearning_kotlin.note_app.components.NoteInputText
 import com.example.jetpacklearning_kotlin.note_app.data.NoteDataSource
 import com.example.jetpacklearning_kotlin.note_app.model.NoteModel
+import com.example.jetpacklearning_kotlin.note_app.util.formatDate
 import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -128,8 +129,8 @@ fun NoteRow(modifier: Modifier,note:NoteModel,
         {
             Text(text = note.title, style = MaterialTheme.typography.subtitle2)
             Text(text = note.description, style = MaterialTheme.typography.subtitle1)
-//            Text(text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, dMMM")),
-//                style = MaterialTheme.typography.caption)
+            Text(text = formatDate(note.entryDate.time),
+                style = MaterialTheme.typography.caption)
 
         }
 
