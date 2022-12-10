@@ -2,4 +2,5 @@
     <string name="app_name">majid2851</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_movie">MovieActivity</string>
+    <string name="title_activity_jet_trivia">JetTriviaActivity</string>
 </resources>
