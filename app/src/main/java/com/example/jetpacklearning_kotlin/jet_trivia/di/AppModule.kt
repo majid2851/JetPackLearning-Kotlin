@@ -1,6 +1,7 @@
 package com.example.jetpacklearning_kotlin.jet_trivia.di
 
 import com.example.jetpacklearning_kotlin.jet_trivia.network.QuestionApi
+import com.example.jetpacklearning_kotlin.jet_trivia.repository.QuestionRepository
 import com.example.jetpacklearning_kotlin.jet_trivia.util.Constants
 import com.google.gson.Gson
 import dagger.Module
@@ -16,6 +17,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule
 {
+    @Singleton
+    @Provides
+    fun provideQuestionRepository(api: QuestionApi): QuestionRepository {
+        return QuestionRepository(api)
+    }
+
+
+
+
     @Singleton
     @Provides
     fun provideQuestionApi():QuestionApi{
