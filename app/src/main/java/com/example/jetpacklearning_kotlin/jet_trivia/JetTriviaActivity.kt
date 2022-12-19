@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetpacklearning_kotlin.jet_trivia.screens.QuestionsViewModel
+import com.example.jetpacklearning_kotlin.jet_trivia.screens.TrivialHome
 import com.example.jetpacklearning_kotlin.jet_trivia.ui.theme.JetPackLearningKotlinTheme
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,31 +38,9 @@ class JetTriviaActivity : ComponentActivity()
     }
 }
 
-@Composable
-fun TrivialHome(viewModel:QuestionsViewModel = viewModel())
-/*viewModel:QuestionsViewModel=hiltViewModel() ???????????????????????????????????????????????????*/
-{
-    Questions(viewModel)
 
 
 
-}
-
-@Composable
-fun Questions(viewModel: QuestionsViewModel)
-{
-    val questions=viewModel.getMyData().value.data?.toMutableList()
-    if(viewModel.getMyData().value.loading==true) {
-        Log.i("mag2851-loading==>", "true")
-    }else
-    {
-        questions?.forEach {
-            Log.i("mag2851-question=>",it.question)
-        }
-    }
-
-    Log.i("mag2851-questionSize==>",questions?.size.toString())
-}
 
 @Preview(showBackground = true)
 @Composable
