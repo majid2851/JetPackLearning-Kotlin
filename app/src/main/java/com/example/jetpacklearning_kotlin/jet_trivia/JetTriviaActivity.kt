@@ -5,12 +5,15 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetpacklearning_kotlin.jet_trivia.screens.QuestionsViewModel
 import com.example.jetpacklearning_kotlin.jet_trivia.screens.TrivialHome
@@ -29,7 +32,7 @@ class JetTriviaActivity : ComponentActivity()
         {
             JetPackLearningKotlinTheme()
             {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background)
+                Surface(modifier = Modifier.width(200.dp).height(200.dp), color = MaterialTheme.colors.background)
                 {
                     TrivialHome()
                 }
