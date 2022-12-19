@@ -9,7 +9,6 @@ import com.example.jetpacklearning_kotlin.jet_trivia.model.QuestionModelItem
 import com.example.jetpacklearning_kotlin.jet_trivia.repository.QuestionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 import kotlin.Exception
 
@@ -21,6 +20,9 @@ class QuestionsViewModel @Inject constructor(private val repository: QuestionRep
 
     init {
         getAllQuestion()
+    }
+    fun getMyData(): MutableState<DataOrException<ArrayList<QuestionModelItem>, Boolean, Exception>> {
+        return data
     }
 
     private fun getAllQuestion()
