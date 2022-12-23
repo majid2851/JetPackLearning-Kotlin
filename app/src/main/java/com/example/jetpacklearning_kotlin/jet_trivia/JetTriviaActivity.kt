@@ -32,7 +32,8 @@ class JetTriviaActivity : ComponentActivity()
         {
             JetPackLearningKotlinTheme()
             {
-                Surface(modifier = Modifier.width(200.dp).height(200.dp), color = MaterialTheme.colors.background)
+                Surface(modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background)
                 {
                     TrivialHome()
                 }

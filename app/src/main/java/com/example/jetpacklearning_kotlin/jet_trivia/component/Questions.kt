@@ -6,11 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,8 +41,12 @@ fun Questions(viewModel: QuestionsViewModel)
         Log.i("mag2851-loading==>", "true")
     }else
     {
-        questions?.forEach {
-            Log.i("mag2851-question=>",it.question)
+        if (questions!=null)
+        {
+            QuestionDisplay(question = questions.first())
+            {
+
+            }
         }
     }
     Log.i("mag2851-questionSize==>",questions?.size.toString())
@@ -53,13 +56,27 @@ fun Questions(viewModel: QuestionsViewModel)
 @Composable
 fun QuestionDisplay(
     question:QuestionModelItem,
-    questionIndex:MutableState<Int>,
-    viewModel: QuestionsViewModel,
-    onNextClick:(Int)->Unit
+//    questionIndex:MutableState<Int>,
+//    viewModel: QuestionsViewModel,
+    onNextClick:(Int)->Unit={}
     )
 {
     val choicesState= remember(question) {
         question.choices.toMutableList()
+    }
+    val answerState= remember(question)
+    {
+        mutableStateOf<Int?>(null)
+    }
+    val correctAnswerState= remember(question) {
+        mutableStateOf<Boolean?>(null)
+    }
+    val updateAnswer:(Int) ->Unit= remember(question)
+    {
+        {
+            answerState.value=it
+            correctAnswerState.value=(choicesState[it]==question.answer)
+        }
     }
     val pathEffect=PathEffect.dashPathEffect(floatArrayOf(10f,10f), phase = 10f)
     Surface(modifier = Modifier
@@ -73,18 +90,44 @@ fun QuestionDisplay(
         {
             QuestionTracker()
             DrawDottedLine(pathEffect =pathEffect )
-            QuestionTitle()
+            QuestionTitle(question)
             choicesState.forEachIndexed { index, answer ->
-                Row(modifier=Modifier.padding(4.dp).fillMaxWidth()
+                Row(modifier= Modifier
+                    .padding(4.dp)
+                    .fillMaxWidth()
                     .height(45.dp)
-                    .border(width = 4.dp,
-                        brush = Brush.linearGradient(colors= listOf(AppColors.mOffDarkPurple,
-                        AppColors.mOffDarkPurple)), shape = RoundedCornerShape(15.dp))
-                    .clip(RoundedCornerShape(
-                        50,50,
-                        50,50))//??????what is clip
+                    .border(
+                        width = 4.dp,
+                        brush = Brush.linearGradient(
+                            colors = listOf(
+                                AppColors.mOffDarkPurple,
+                                AppColors.mOffDarkPurple
+                            )
+                        ), shape = RoundedCornerShape(15.dp)
+                    )
+                    .clip(
+                        RoundedCornerShape(
+                            50, 50,
+                            50, 50
+                        )
+                    )//??????what is clip
                     .background(Color.Transparent))
                 {
+                    RadioButton(selected =(answerState.value==index),
+                        onClick = {
+                            updateAnswer(index)
+                        }, modifier = Modifier.padding(start = 16.dp),
+                    colors = RadioButtonDefaults.colors(
+                        selectedColor =
+                        if (correctAnswerState.value==true && index==answerState.value)
+                        {
+                            Color.Green.copy(alpha = .2f)
+                        }else
+                        {
+                            Color.Red.copy(alpha = .2f)
+                        }
+                    ))
+                    Text(text = answer)
                     
                 }
             }
@@ -136,13 +179,13 @@ fun DrawDottedLine(pathEffect: PathEffect)
 
     }
 }
-@Preview
+//@Preview
 @Composable
-fun QuestionTitle()
+fun QuestionTitle(question:QuestionModelItem)
 {
     Column()
     {
-        Text(text = "What\'s meaning of this question?",
+        Text(text = question.question,
             modifier = Modifier
                 .padding(4.dp)
                 .align(alignment = Alignment.Start)
