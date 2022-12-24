@@ -53,8 +53,9 @@ fun Questions(viewModel: QuestionsViewModel)
         }
         if (questions!=null)
         {
-            QuestionDisplay(question = question!!, questionIndex = questionIndex,
-            viewModel = viewModel)
+            QuestionDisplay(
+                question = question!!, questionIndex = questionIndex,
+            viewModel = viewModel, questions = questions)
             {
                 questionIndex.value=questionIndex.value+1
             }
@@ -69,9 +70,10 @@ fun QuestionDisplay(
     question:QuestionModelItem,
     questionIndex:MutableState<Int>,
     viewModel: QuestionsViewModel,
-    onNextClick:(Int)->Unit={}
-    )
+    questions: MutableList<QuestionModelItem>?,
+    onNextClick:(Int)->Unit={}, )
 {
+
     val choicesState= remember(question) {
         question.choices.toMutableList()
     }
@@ -99,8 +101,8 @@ fun QuestionDisplay(
         Column(modifier=Modifier.padding(12.dp),verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start)
         {
-            QuestionTracker(questionIndex.value)
-            ShowProgress()
+            QuestionTracker(questionIndex.value,questions!!.size)
+            ShowProgress(questionIndex,questions)
             DrawDottedLine(pathEffect =pathEffect )
             QuestionTitle(question)
             choicesState.forEachIndexed()
@@ -176,10 +178,7 @@ fun QuestionDisplay(
                             fontSize = 17.sp, fontWeight = FontWeight.Bold,
                             color=AppColors.mOffWhite)
                     }
-
-
         }
-
 
     }
 }
@@ -246,9 +245,8 @@ fun QuestionTitle(question:QuestionModelItem)
 
 }
 
-@Preview
 @Composable
-fun ShowProgress(score:Int=12)
+fun ShowProgress(index: MutableState<Int>, questions: MutableList<QuestionModelItem>?)
 {
     val gradient=Brush.linearGradient(listOf(Color(0xFFF95075),
         Color(0xFFBE6BE5)))
@@ -263,16 +261,21 @@ fun ShowProgress(score:Int=12)
             ),
             shape = RoundedCornerShape(34.dp)
         )
-        .clip(RoundedCornerShape(topStartPercent = 50,
-            topEndPercent = 50,
-            bottomEndPercent = 50,
-            bottomStartPercent = 50))
+        .clip(
+            RoundedCornerShape(
+                topStartPercent = 50,
+                topEndPercent = 50,
+                bottomEndPercent = 50,
+                bottomStartPercent = 50
+            )
+        )
         .background(Color.Transparent),
             verticalAlignment = Alignment.CenterVertically)
     {
         Button(contentPadding = PaddingValues(1.dp),
             onClick = {  },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth(((index.value).toFloat()/ questions!!.size))
                 .background(brush = gradient), enabled = false,
                 elevation = null, colors = buttonColors(
                 backgroundColor = Color.Transparent,
