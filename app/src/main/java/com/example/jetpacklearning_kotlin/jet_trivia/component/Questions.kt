@@ -7,6 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -99,6 +100,7 @@ fun QuestionDisplay(
             horizontalAlignment = Alignment.Start)
         {
             QuestionTracker(questionIndex.value)
+            ShowProgress()
             DrawDottedLine(pathEffect =pathEffect )
             QuestionTitle(question)
             choicesState.forEachIndexed()
@@ -240,16 +242,52 @@ fun QuestionTitle(question:QuestionModelItem)
             lineHeight = 22.sp,
             color =AppColors.mOffWhite
             )
+    }
 
+}
+
+@Preview
+@Composable
+fun ShowProgress(score:Int=12)
+{
+    val gradient=Brush.linearGradient(listOf(Color(0xFFF95075),
+        Color(0xFFBE6BE5)))
+    Row(modifier= Modifier
+        .padding(3.dp)
+        .fillMaxWidth()
+        .height(45.dp)
+        .border(
+            width = 4.dp, brush = Brush.linearGradient(
+                colors =
+                listOf(AppColors.mLightPurple, AppColors.mLightPurple)
+            ),
+            shape = RoundedCornerShape(34.dp)
+        )
+        .clip(RoundedCornerShape(topStartPercent = 50,
+            topEndPercent = 50,
+            bottomEndPercent = 50,
+            bottomStartPercent = 50))
+        .background(Color.Transparent),
+            verticalAlignment = Alignment.CenterVertically)
+    {
+        Button(contentPadding = PaddingValues(1.dp),
+            onClick = {  },
+            modifier = Modifier.fillMaxWidth()
+                .background(brush = gradient), enabled = false,
+                elevation = null, colors = buttonColors(
+                backgroundColor = Color.Transparent,
+                disabledBackgroundColor = Color.Transparent
+                ))
+        {
+
+
+        }
 
 
     }
 
 
-
 }
-
-
 
 
 
