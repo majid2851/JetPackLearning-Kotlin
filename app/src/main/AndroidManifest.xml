@@ -14,6 +14,11 @@
         android:theme="@style/Theme.JetPackLearningKotlin"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".weather.WeatherActivity"
+            android:exported="false"
+            android:label="@string/title_activity_weather"
+            android:theme="@style/Theme.JetPackLearningKotlin" />
+        <activity
             android:name=".note_app.NoteActivity"
             android:exported="false"
             android:label="@string/title_activity_jet_trivia"

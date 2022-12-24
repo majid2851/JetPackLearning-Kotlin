@@ -3,4 +3,5 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_movie">MovieActivity</string>
     <string name="title_activity_jet_trivia">JetTriviaActivity</string>
+    <string name="title_activity_weather">WeatherActivity</string>
 </resources>
