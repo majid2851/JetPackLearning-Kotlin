@@ -14,7 +14,7 @@
         android:theme="@style/Theme.JetPackLearningKotlin"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".weather.WeatherActivity"
+            android:name=".jet_trivia.Hilt_JetTriviaActivity"
             android:exported="false"
             android:label="@string/title_activity_weather"
             android:theme="@style/Theme.JetPackLearningKotlin" />
@@ -34,7 +34,7 @@
             android:label="@string/title_activity_movie"
             android:theme="@style/Theme.JetPackLearningKotlin" />
         <activity
-            android:name=".jet_trivia.JetTriviaActivity"
+            android:name=".weather.WeatherActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.JetPackLearningKotlin">
